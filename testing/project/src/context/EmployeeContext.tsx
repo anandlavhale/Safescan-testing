@@ -1,8 +1,8 @@
 import React, { createContext, useContext, useState, useCallback, ReactNode } from 'react';
 import axios from 'axios';
 
-// ✅ Set backend API base URL once
-axios.defaults.baseURL = "http://localhost:5000/api";
+const API_BASE_URL = "/api";
+axios.defaults.baseURL = API_BASE_URL;
 
 interface EmergencyContact {
   name: string;
