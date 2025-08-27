@@ -21,8 +21,24 @@ const __dirname = path.dirname(__filename);
 // Connect to MongoDB
 connectDB();
 
+// ✅ Helmet with custom CSP (must come before routes)
+app.use(
+  helmet({
+    contentSecurityPolicy: {
+      useDefaults: true,
+      directives: {
+        "default-src": ["'self'"],
+        "connect-src": ["'self'", process.env.BASE_URL || "http://localhost:5173"],
+        "img-src": ["'self'", "data:", "blob:"],
+        "media-src": ["'self'", "data:", "blob:"],
+        "script-src": ["'self'", "'unsafe-inline'"],
+        "style-src": ["'self'", "'unsafe-inline'"],
+      },
+    },
+  })
+);
+
 // Middleware
-app.use(helmet());
 app.use(cors({
   origin: process.env.BASE_URL || 'http://localhost:5173',
   credentials: true
