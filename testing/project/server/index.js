@@ -29,14 +29,15 @@ app.use(
       directives: {
         "default-src": ["'self'"],
         "connect-src": ["'self'", process.env.BASE_URL || "http://localhost:5173"],
-        "img-src": ["'self'", "data:", "blob:"],
-        "media-src": ["'self'", "data:", "blob:"],
+        "img-src": ["'self'", "data:", "blob:"],   // ✅ allow blob images
+        "media-src": ["'self'", "data:", "blob:"], // ✅ allow webcam stream blobs
         "script-src": ["'self'", "'unsafe-inline'"],
         "style-src": ["'self'", "'unsafe-inline'"],
       },
     },
   })
 );
+
 
 // Middleware
 app.use(cors({
